@@ -18,7 +18,7 @@ def set_font():
 
     """
 
-def set_font(text, size="h3"):
+def set_text(text, size="h3"):
     outstring = f"""<{size} style="color:#151E3F;">{text}</{size}>"""
     return outstring
 
