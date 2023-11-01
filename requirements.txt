@@ -3,4 +3,3 @@ geopandas==0.14.0
 streamlit
 streamlit-folium
 folium==0.14.0
-gdal
