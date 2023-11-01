@@ -30,9 +30,11 @@ def read_data(filepath):
     hospitals = data[data['amenity']=='hospital']
     return hospitals
 
-def show_map(df):
+def show_map_marker(df):
     map = folium.Map(location=[13, 122], 
                  zoom_start=5,
+                #  width=500,
+                #  height=500,
                  tiles='https://api.mapbox.com/styles/v1/knpoblete/clgi3uciu001801ln65r8ors6/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoia25wb2JsZXRlIiwiYSI6ImNsZ2k5NGE4ZTBpc2IzY2xmemgwdWl5NXkifQ.UQ55c1MEZb-mQV-x66gKIQ',
                  attr='Mapbox Light')
 
@@ -42,6 +44,25 @@ def show_map(df):
         feature_group.add_child(folium.Marker(location=[lat,lon],
                                             popup=name,
                                             icon=folium.Icon(color="red", icon="glyphicon glyphicon-plus", size=0.5)))
+
+    map.add_child(feature_group)
+
+    return map
+
+def show_map_circle(df):
+    map = folium.Map(location=[13, 122], 
+                 zoom_start=5,
+                #  width=500,
+                #  height=500,
+                 tiles='https://api.mapbox.com/styles/v1/knpoblete/clgi3uciu001801ln65r8ors6/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoia25wb2JsZXRlIiwiYSI6ImNsZ2k5NGE4ZTBpc2IzY2xmemgwdWl5NXkifQ.UQ55c1MEZb-mQV-x66gKIQ',
+                 attr='Mapbox Light')
+
+    feature_group = folium.FeatureGroup("Locations")
+
+    for lat, lon, name in zip(list(df['lat']), list(df['lon']), list(df['location'])):
+        feature_group.add_child(folium.Circle(location=[lat,lon],
+                                            popup=name,
+                                            color='red'))
 
     map.add_child(feature_group)
 
