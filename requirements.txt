@@ -2,3 +2,4 @@ pandas
 geopandas==0.14.0
 streamlit
 streamlit-folium
+folium
