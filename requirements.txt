@@ -1,5 +1,5 @@
 pandas
-geopandas==0.14.0
+geopandas
 streamlit
 streamlit-folium
 folium
